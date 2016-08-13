@@ -2,17 +2,17 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
-public class Artical {
+public class Article {
 	static ArrayList<Time> arr = new ArrayList<>();
 	static ArrayList<YearData> yd = new ArrayList<>();
 	public static void main(String[] args){
 		for(int z=1;z<10;z++){
-			String name1 = "artical/"+"0"+z+""+".txt";
+			String name1 = "article/"+"0"+z+""+".txt";
 			dealfile(name1);
 		}
-		dealfile("artical/10.txt");
+		dealfile("article/10.txt");
 		for(int w=11;w<=25;w++){
-			String name2 = "artical/"+w+""+".txt";
+			String name2 = "article/"+w+""+".txt";
 			dealfile(name2);
 		}
 		
