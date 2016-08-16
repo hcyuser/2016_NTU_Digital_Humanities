@@ -3,22 +3,23 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 public class Article {
-	static ArrayList<Time> arr = new ArrayList<>();
+	static ArrayList<News> news = new ArrayList<>();
 	static ArrayList<YearData> yd = new ArrayList<>();
 	public static void main(String[] args){
-		for(int z=1;z<10;z++){
-			String name1 = "article/"+"0"+z+""+".txt";
-			dealfile(name1);
-		}
-		dealfile("article/10.txt");
-		for(int w=11;w<=25;w++){
-			String name2 = "article/"+w+""+".txt";
-			dealfile(name2);
-		}
-		
-		//dealfile("05.txt");
+		dealfile("article/01.txt");
+		//dealfile("article/02.txt");
+		//dealfile("article/03.txt");
+		//dealfile("article/04.txt");
+		//dealfile("article/05.txt");
+		//dealfile("article/06.txt");
+		//dealfile("article/07.txt");
+		//dealfile("article/08.txt");
+
 		for(int i=0;i<yd.size();i++){
-			System.out.println("年分:"+yd.get(i).getYear()+"次數"+yd.get(i).counter);
+			System.out.println("年分:"+yd.get(i).getYear()+"次數:"+yd.get(i).counter);
+		}
+		for(int i=0;i<news.size();i++){
+			System.out.println("媒體:"+news.get(i).getName()+"次數:"+news.get(i).counter);
 		}
 		
 	}
@@ -37,9 +38,9 @@ public class Article {
 					String timeinfo = br.readLine();
 					cases++;
 					String timesplit1[] = timeinfo.split(" ");
+					dealNews(timesplit1[3]);
 					String time = timesplit1[1];
 					String timesplit2[] = time.split("-");
-					arr.add(new Time(Integer.parseInt(timesplit2[0]),Integer.parseInt(timesplit2[1]),Integer.parseInt(timesplit2[2])));
 					dealyeardata(Integer.parseInt(timesplit2[0]),Integer.parseInt(timesplit2[1]));
 				}
 			}
@@ -68,5 +69,24 @@ public class Article {
 	   		  return Integer.parseInt(o1.getYear()+"")-Integer.parseInt(o2.getYear()+"");
 	   		 }  
 	   		});
+	}
+	public static void dealNews(String nename){
+		boolean isAdd = false; 
+		for(int i=0;i<news.size();i++){
+			if(news.get(i).name.equals(nename)){
+				news.get(i).counter++;
+				isAdd = true;
+			}
+		}
+		if(!isAdd){
+			news.add(new News(nename));
+		}
+		Collections.sort(news, new Comparator<News>(){
+	   		 @Override
+	   		 public int compare(News o1, News o2) {
+	   		  return o2.counter-o1.counter;
+	   		 }  
+	   		});
+		
 	}
 }
