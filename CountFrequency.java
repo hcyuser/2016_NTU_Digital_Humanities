@@ -6,14 +6,12 @@ import java.util.*;
 public class CountFrequency {
 	static ArrayList<Fre> fre = new ArrayList<>();
 	public static void main(String[] args) throws IOException{
-		dealfile("01.csv");
-		dealfile("02.csv");
-		dealfile("03.csv");
-		dealfile("04.csv");
-		dealfile("05.csv");
-		dealfile("06.csv");
-		dealfile("07.csv");
-		dealfile("08.csv");
+		dealfile("01.txt");
+		dealfile("02.txt");
+		dealfile("03.txt");
+		dealfile("04.txt");
+		dealfile("05.txt");
+		dealfile("06.txt");
 		Collections.sort(fre, new Comparator<Fre>(){
 			@Override
 			public int compare(Fre o1, Fre o2) {
@@ -21,7 +19,7 @@ public class CountFrequency {
 			}  
 		});
 		FileWriter fw = new FileWriter("output.txt");
-		writefile(fw,"詞彙:次數\r\n");
+		writefile(fw,"時間:次數\r\n");
 		for(int i=0;i<fre.size();i++){
 			if(fre.get(i).getCounter()>=4){
 				String temp = fre.get(i).name+","+fre.get(i).counter;
@@ -36,7 +34,8 @@ public class CountFrequency {
 			FileReader fr=new FileReader(txtname);
 			BufferedReader br=new BufferedReader(fr);
 			while(br.ready()){
-				String temp[] = br.readLine().split(",");
+				String temp[] = br.readLine().split("\t");
+				//System.out.println(temp[0]+":"+temp[1]);
 				dealfre(temp);
 
 			}
